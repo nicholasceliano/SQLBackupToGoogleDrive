@@ -18,7 +18,7 @@ Create client_secrets.json in root folder to hold Google Drive API info (auto-ge
 Create config.json in root to hold database credentials:
 ```
 {
-	"googleDriveFolder": "Personal Finance", //can be empty
+	"googleDriveFolder": "", //can be empty
 	"databaseConn": {
 		"host": "",
 		"database": "",
