@@ -1,24 +1,20 @@
-import pickle
-import os.path
+import os
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-# from googleapiclient.discovery import build
-# from google_auth_oauthlib.flow import InstalledAppFlow
-# from google.auth.transport.requests import Request
-
 
 SCOPES = ['https://www.googleapis.com/auth/drive']
 
 class GoogleDriveService:
 	googleDriveCredentials = 'GoogleDriveCreds.txt'
-	def __init__(self, localFilePath, driveFolder = ''):
+	def __init__(self, localFilePath, appRoot, driveFolder = ''):
+		self.appRoot = appRoot
 		self.drive = self.__authenticate__()
 		uploadFolderId = self.__getUploadFolderId__(driveFolder)
 		self.__uploadFile__(localFilePath, uploadFolderId)
 
 	def __authenticate__(self):
 		g_login = GoogleAuth()
-		g_login.LoadCredentialsFile(self.googleDriveCredentials)
+		g_login.LoadCredentialsFile(os.path.join(self.appRoot, self.googleDriveCredentials))
 		if g_login.credentials is None:
 			g_login.LocalWebserverAuth()
 		elif g_login.access_token_expired:
@@ -26,7 +22,7 @@ class GoogleDriveService:
 		else:
 			g_login.Authorize()
 		
-		g_login.SaveCredentialsFile(self.googleDriveCredentials)
+		g_login.SaveCredentialsFile(os.path.join(self.appRoot, self.googleDriveCredentials))
 
 		return GoogleDrive(g_login)
 
