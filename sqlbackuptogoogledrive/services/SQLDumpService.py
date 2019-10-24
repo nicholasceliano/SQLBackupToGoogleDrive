@@ -1,4 +1,4 @@
-import os, datetime
+import os, datetime, shutil
 
 class SQLDumpService:
 	def __init__(self, appRoot, dbConnInfo):
@@ -11,6 +11,7 @@ class SQLDumpService:
 		return dmpPath
 
 	def __checkTmpPath__(self):
+		shutil.rmtree(os.path.join(self.appRoot, 'tmp'))
 		if (os.path.isdir(os.path.join(self.appRoot, 'tmp')) == False):
 			os.mkdir(os.path.join(self.appRoot, 'tmp'))
 

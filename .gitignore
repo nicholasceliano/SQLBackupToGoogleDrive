@@ -1,7 +1,9 @@
 /__pycache__
 /services/__pycache__
 /models/__pycache__
-/tmp
-config.json
-client_secrets.json
-GoogleDriveCreds.txt
+/sqlbackuptogoogledrive/tmp
+/sqlbackuptogoogledrive/config.json
+/client_secrets.json
+/sqlbackuptogoogledrive/GoogleDriveCreds.txt
+/SQLBackupToGoogleDrive.egg-info
+*.pyc

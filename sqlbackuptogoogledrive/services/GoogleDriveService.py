@@ -1,4 +1,4 @@
-import os
+import os, io
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
@@ -38,7 +38,7 @@ class GoogleDriveService:
 		return uploadFolderId
 				
 	def __uploadFile__(self, localFilePath, uploadFolderId):
-		with open(localFilePath,"r") as file:
+		with io.open(localFilePath, mode="r", encoding='utf-8') as file:
 			file_drive = self.drive.CreateFile({'title':os.path.basename(file.name), 'parents': [{'kind': 'drive#fileLink', 'id': uploadFolderId}] })
 			file_drive.SetContentString(file.read()) 
 			file_drive.Upload()

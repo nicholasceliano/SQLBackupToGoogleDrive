@@ -15,7 +15,7 @@ Create client_secrets.json in root folder to hold Google Drive API info (auto-ge
 } 
 ```
 
-Create config.json in root to hold database credentials:
+Create config.json in /sqlbackuptogoogledrive to hold database credentials:
 ```
 {
 	"googleDriveFolder": "", //can be empty
@@ -26,4 +26,14 @@ Create config.json in root to hold database credentials:
 		"password": ""
 	}
 }
+```
+
+Install locally
+```
+sudo pip install -e /home/pi/Documents/git/SQLBackupToGoogleDrive
+```
+
+Run locally
+```
+gnucashBackup
 ```
